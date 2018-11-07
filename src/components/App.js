@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions'
 import LoadingBar from 'react-redux-loading'
 import './App.css';
+import { Nav } from './Nav'
+import Test from './Test'
+import Questions from './Questions'
 
 class App extends Component {
   componentDidMount() {
@@ -10,14 +14,22 @@ class App extends Component {
   }
   render() {
     return (
-      <Fragment>
-        <LoadingBar />
-        <div className="App">
-          <header className="App-header">
-            <p>Hello React</p>
-          </header>
-        </div>
-      </Fragment>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className="container">
+            <Nav />
+            {!(this.props.loading) &&
+              <div>
+                <Route path='/' exact component={Questions} />
+                <Route path='/question/:id' component={Test} />
+                <Route path='/new' component={Test} />
+                <Route path='/leader-board' component={Test} />
+              </div>
+            }
+          </div>
+        </Fragment>
+      </Router>
     );
   }
 }
