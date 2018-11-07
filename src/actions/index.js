@@ -5,6 +5,7 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 // Action types
 import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, } from './actionTypes'
 
+// Action creators
 function setAuthedUser (id) {
   return {
     type: SET_AUTHED_USER,
@@ -24,6 +25,7 @@ function receiveQuestions (questions) {
   }
 }
 
+// TODO: user authentication & sign-in flow
 const AUTHED_ID = 'taehyunlim'
 
 export function handleInitialData () {
