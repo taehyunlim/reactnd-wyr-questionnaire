@@ -49,3 +49,58 @@ li {
   border-radius: 15px;
   margin: 10px;
 }
+
+.tabBtn {
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1rem 2rem;
+  outline: none;
+}
+
+.activeBtn {
+  border-bottom: 3px solid #ddd
+}
+
+.tabList {
+  border-bottom: 1px solid #ddd;
+}
+
+.timestamp {
+  color: #969696;
+  font-size: 11px;
+}
+
+/* COPY PASTA FOR FUTURE USE */
+
+.content-toggle {
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  background: #fff;
+}
+
+.content-toggle-summary {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 10px;
+  font: inherit;
+  border-bottom: solid 1px transparent;
+}
+.content-toggle-summary:before {
+  display: inline-block;
+  width: 1em;
+  content: "▸";
+}
+.content-toggle-summary-open:before {
+  content: "▾";
+}
+
+.content-toggle-details {
+  padding: 0 10px;
+}

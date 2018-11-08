@@ -1,32 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import Question from './Question'
 
-class Question extends Component {
+class QuestionPage extends Component {
   render() {
-    // console.info(this.props)
-    const { question } = this.props
-    if (!question) {
-      return <p>[Error] This Question does not exist.</p>
-    }
-    const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
+    console.info(this.props)
+    // const { question } = this.props
+    // if (!question) {
+    //   return <p>[Error] This Question does not exist.</p>
+    // }
+    // const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
 
-    const preview = (
-      <div className='question-info'>
-        <div className='timestamp'>{timestamp}</div>
-        <div>{name} asks:</div>
-        <div>Would you rather</div>
-        <div>{textOptionOne}: {votesOptionOne.length} </div>
-        <div>{textOptionTwo}: {votesOptionTwo.length} </div>
-        <Link to={`/question/${id}`}>
-          View Poll
-        </Link>
-      </div>)
 
     return (
       <div className='question'>
-        <img src={avatar} alt={`Avatar of ${name}`} className='avatar' />
-        {preview}
+        <Question props={this.props.id} />
       </div>
     )
   }
@@ -62,9 +50,9 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
   return {
     authedUser,
     question: question 
-      ? formatQuestion(question, users[question.author], authedUser) 
-      : null
+      // ? formatQuestion(question, users[question.author], authedUser) 
+      // : null
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(QuestionPage)

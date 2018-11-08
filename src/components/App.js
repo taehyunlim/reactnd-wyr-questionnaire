@@ -7,6 +7,7 @@ import './App.css';
 import { Nav } from './Nav'
 import Test from './Test'
 import Questions from './Questions'
+import QuestionPage from './QuestionPage'
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
             {!(this.props.loading) &&
               <div>
                 <Route path='/' exact component={Questions} />
-                <Route path='/question/:id' component={Test} />
+                <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={Test} />
                 <Route path='/leader-board' component={Test} />
               </div>
