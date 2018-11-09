@@ -34,7 +34,7 @@ class Question extends Component {
       return <p>[Error] This Question does not exist.</p>
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
-    const previewStringArray = textOptionOne.concat(' or ').concat(textOptionTwo).substring(0,50).split(' ')
+    const previewStringArray = textOptionOne.concat(' or ').concat(textOptionTwo).substring(0,30).split(' ')
     // Take out the last partial word-string
     previewStringArray.pop()
     // Return preview in the main page: '/'

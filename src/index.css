@@ -62,7 +62,7 @@ label {
 
 .card-main {
   display: flex;
-  padding: 2.5%
+  padding: 5%
 }
 
 .card-content-left {
@@ -146,8 +146,7 @@ li {
 }
 
 .poll-text {
-  margin: 0px 10px;
-  padding: 0px 15px 15px 15px;
+  padding: 0px 10px 10px 10px;
 }
 
 .option-text {
