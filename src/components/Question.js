@@ -1,8 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { formatDate, formatQuestion } from '../utils/helper'
 
 class Question extends Component {
+  state = {
+    selectedOption: ''
+  }
+
+  handleChange = (e) => {
+    const selectedOption = e.target.value
+    this.setState(() => (
+      { selectedOption }
+    ))
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state.selectedOption)
+  }
+
   render() {
     // console.info(this.props)
     const { question } = this.props
@@ -11,48 +28,72 @@ class Question extends Component {
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
 
+    // Return preview in the main page: '/'
     const preview = (
-      <div className='question-info'>
-        <div className='timestamp'>{timestamp}</div>
-        <div>{name} asks:</div>
-        <div>Would you rather</div>
-        <div>{textOptionOne}: {votesOptionOne.length} </div>
-        <div>{textOptionTwo}: {votesOptionTwo.length} </div>
-        <Link to={`/question/${id}`}>
-          View Poll
-        </Link>
+      <div className='question-card'>
+        <div className='card-top'>
+          <div>{name} asks:</div>
+          <div className='timestamp'>{timestamp}</div>
+        </div>
+        <div className='card-main'>
+          <div className='card-content-left'>
+            <img src={avatar} alt={`${name}`} className='avatar' />
+          </div>
+          <div className='card-content-right'>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
+            <div className='poll-text'>{textOptionOne}: {votesOptionOne.length} </div>
+            <div className='poll-text'>{textOptionTwo}: {votesOptionTwo.length} </div>
+            <Link to={`/question/${id}`}>
+              View Poll
+            </Link>
+          </div>
+        </div>
       </div>)
 
-    return (
-      <div className='question'>
-        <img src={avatar} alt={`Avatar of ${name}`} className='avatar' />
-        {preview}
+    // Return poll view in the poll page: '/quesiton/:id'
+    const pollView = (
+      <div className='question-card'>
+        <div className='card-top'>
+          <div>{name} asks:</div>
+          <div className='timestamp'>{timestamp}</div>
+        </div>
+        <div className='card-main'>
+          <div className='card-content-left'>
+            <img src={avatar} alt={`${name}`} className='avatar' />
+          </div>
+          <div className='card-content-right'>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
+            <form onSubmit={this.handleSubmit}>
+              <label className='poll-text'>
+                <input 
+                  type='radio' 
+                  value="option1" 
+                  checked={this.state.selectedOption === 'option1'}
+                  onChange={this.handleChange} />
+                {textOptionOne}
+              </label>
+              <label className='poll-text'>
+                <input 
+                  type='radio' 
+                  value="option2" 
+                  checked={this.state.selectedOption === 'option2'}
+                  onChange={this.handleChange} />
+                {textOptionTwo}
+              </label>
+              <button className='btn' type='submit' disabled={!this.state.selectedOption}>Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
     )
-  }
-}
 
-function formatDate (timestamp) {
-  const d = new Date(timestamp)
-  const time = d.toLocaleTimeString('en-US')
-  return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
-}
+    const currentView = this.props.isPollView ? pollView : preview
 
-function formatQuestion (question, author, authedUser) {
-  const { id, optionOne, optionTwo, timestamp } = question
-  const { name, avatarURL } = author
-  const { votes: votesOptionOne, text: textOptionOne } = optionOne
-  const { votes: votesOptionTwo, text: textOptionTwo } = optionTwo
-
-  return {
-    name,
-    id,
-    timestamp: formatDate(timestamp),
-    avatar: avatarURL,
-    votesOptionOne,
-    votesOptionTwo,
-    textOptionOne,
-    textOptionTwo
+    return (
+      <Fragment>
+        {currentView}
+      </Fragment>
+    )
   }
 }
 

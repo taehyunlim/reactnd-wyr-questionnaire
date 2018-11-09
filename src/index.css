@@ -17,10 +17,51 @@ code {
 
 /* CUSTOM CSS */
 
+html {
+  font-size: 1em;
+}
+
+label {
+  display: inherit;
+}
+
 .container {
-  max-width: 1000px;
+  max-width: 50rem;
   margin: 0 auto;
+  padding: 3rem;
+}
+
+.question-card {
+  min-width: 200px;
+  max-width: 500px;
+  margin-left: 30px;
+}
+
+.card-top, .card-main {
   padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.card-top {
+  background: #eee;
+  margin-bottom: -1px;
+}
+
+.card-main {
+  padding: 15px;
+}
+
+.card-content-left {
+  display: inline-block;
+  margin: 15px;
+  width: 25%;
+}
+
+.card-content-right {
+  display: inline-block;
+  width: 65%;
+  border-left: 1px solid #ddd;
 }
 
 .nav ul {
@@ -45,9 +86,10 @@ li {
 }
 
 .avatar {
-  height: 30px;
-  border-radius: 15px;
-  margin: 10px;
+  height: 4rem;
+  border-radius: 2rem;
+  margin-right: 10px;
+  vertical-align: super;
 }
 
 .tabBtn {
@@ -70,6 +112,20 @@ li {
 .timestamp {
   color: #969696;
   font-size: 11px;
+}
+
+.btn {
+  /* text-transform: uppercase; */
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background: #fff;
+  position: relative;
+}
+
+.poll-text {
+  margin: 0px 10px;
 }
 
 /* COPY PASTA FOR FUTURE USE */
