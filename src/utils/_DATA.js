@@ -1,3 +1,5 @@
+import profile from './profile.jpeg';
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -24,7 +26,8 @@ let users = {
   taehyunlim: {
     id: 'taehyunlim',
     name: 'Taehyun Lim',
-    avatarURL: "https://pbs.twimg.com/profile_images/2580833772/image_400x400.jpg",
+    // avatarURL: "https://pbs.twimg.com/profile_images/2580833772/image_400x400.jpg",
+    avatarURL: profile,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -172,6 +175,7 @@ export function _saveQuestion (question) {
 }
 
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+  console.log(authedUser, qid, answer)
   return new Promise((res, rej) => {
     setTimeout(() => {
       users = {
