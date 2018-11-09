@@ -99,6 +99,7 @@ li {
   font-size: inherit;
   padding: 1rem 2rem;
   outline: none;
+  width: 50%;
 }
 
 .activeBtn {

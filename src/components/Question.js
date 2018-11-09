@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate, formatQuestion } from '../utils/helper'
+import { handleAnswerQuestion } from '../actions'
 
 class Question extends Component {
   state = {
@@ -17,7 +18,13 @@ class Question extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.selectedOption)
+    const { question, dispatch } = this.props
+    const data = {
+      id: question.id,
+      authedUser: this.props.authedUser,
+      answer: this.state.selectedOption
+    }
+    dispatch(handleAnswerQuestion(data))
   }
 
   render() {
@@ -67,16 +74,16 @@ class Question extends Component {
               <label className='poll-text'>
                 <input 
                   type='radio' 
-                  value="option1" 
-                  checked={this.state.selectedOption === 'option1'}
+                  value="optionOne" 
+                  checked={this.state.selectedOption === 'optionOne'}
                   onChange={this.handleChange} />
                 {textOptionOne}
               </label>
               <label className='poll-text'>
                 <input 
                   type='radio' 
-                  value="option2" 
-                  checked={this.state.selectedOption === 'option2'}
+                  value="optionTwo" 
+                  checked={this.state.selectedOption === 'optionTwo'}
                   onChange={this.handleChange} />
                 {textOptionTwo}
               </label>
