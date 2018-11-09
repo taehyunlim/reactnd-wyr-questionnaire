@@ -6,7 +6,9 @@ class QuestionPage extends Component {
   render() {
     console.info(this.props)
     return (
-      <Question id={this.props.id} isPollView={true} />
+      <div className='page-container'>
+        <Question id={this.props.id} isPollView={true} />
+      </div>
     )
   }
 }

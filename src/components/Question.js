@@ -34,10 +34,12 @@ class Question extends Component {
       return <p>[Error] This Question does not exist.</p>
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
-
+    const previewStringArray = textOptionOne.concat(' or ').concat(textOptionTwo).substring(0,50).split(' ')
+    // Take out the last partial word-string
+    previewStringArray.pop()
     // Return preview in the main page: '/'
     const preview = (
-      <div className='question-card'>
+      <div className='card-container'>
         <div className='card-top'>
           <div>{name} asks:</div>
           <div className='timestamp'>{timestamp}</div>
@@ -47,10 +49,11 @@ class Question extends Component {
             <img src={avatar} alt={`${name}`} className='avatar' />
           </div>
           <div className='card-content-right'>
-            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
-            <div className='poll-text'>{textOptionOne}: {votesOptionOne.length} </div>
-            <div className='poll-text'>{textOptionTwo}: {votesOptionTwo.length} </div>
-            <Link to={`/question/${id}`}>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather</div>
+            <div className='poll-text'>{previewStringArray.join(' ').concat("...")}</div>
+            <Link 
+              to={`/question/${id}`}
+              className='btn'>
               View Poll
             </Link>
           </div>
@@ -59,7 +62,7 @@ class Question extends Component {
 
     // Return poll view in the poll page: '/quesiton/:id'
     const pollView = (
-      <div className='question-card'>
+      <div className='card-container'>
         <div className='card-top'>
           <div>{name} asks:</div>
           <div className='timestamp'>{timestamp}</div>
@@ -69,9 +72,9 @@ class Question extends Component {
             <img src={avatar} alt={`${name}`} className='avatar' />
           </div>
           <div className='card-content-right'>
-            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather</div>
             <form onSubmit={this.handleSubmit}>
-              <label className='poll-text'>
+              <label className='option-text'>
                 <input 
                   type='radio' 
                   value="optionOne" 
@@ -79,7 +82,7 @@ class Question extends Component {
                   onChange={this.handleChange} />
                 {textOptionOne}
               </label>
-              <label className='poll-text'>
+              <label className='option-text'>
                 <input 
                   type='radio' 
                   value="optionTwo" 

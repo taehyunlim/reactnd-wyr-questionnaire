@@ -24,11 +24,10 @@ class Questions extends Component {
       : idsToLists(unansweredIds)
 
     return (
-      <div className='container'>
-        <h3 className='center'>Questions</h3>
+      <div className='page-container'>
         <div className='tabList'>
-          <button className={`tabBtn ${(activeIndex===0) && 'activeBtn'}`} onClick={() => this.selectTab(0)}>answered</button>
-          <button className={`tabBtn ${(activeIndex===1) && 'activeBtn'}`} onClick={() => this.selectTab(1)}>unanswered</button>
+          <button className={`tabBtn ${(activeIndex===0) && 'activeBtn'}`} onClick={() => this.selectTab(0)}>Answered Questions</button>
+          <button className={`tabBtn ${(activeIndex===1) && 'activeBtn'}`} onClick={() => this.selectTab(1)}>Unanswered Questions</button>
         </div>
         <ul className='questions-list'>
           {displayIds}
