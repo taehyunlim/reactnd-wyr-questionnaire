@@ -8,6 +8,7 @@ import { Nav } from './Nav'
 import Test from './Test'
 import Questions from './Questions'
 import QuestionPage from './QuestionPage'
+import NewQuestion from './NewQuestion'
 
 class App extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class App extends Component {
               <div>
                 <Route path='/' exact component={Questions} />
                 <Route path='/question/:id' component={QuestionPage} />
-                <Route path='/new' component={Test} />
+                <Route path='/new' component={NewQuestion} />
                 <Route path='/leader-board' component={Test} />
               </div>
             }

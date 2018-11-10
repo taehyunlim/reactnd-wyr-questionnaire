@@ -80,6 +80,10 @@ label {
   padding-left: 2.5%;
 }
 
+.card-content-full {
+  width: 100%;
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;
@@ -149,11 +153,16 @@ li {
 
 .poll-text {
   padding: 0px 10px 10px 10px;
+  margin-bottom: 10px;
 }
 
 .option-text {
   margin: 10px;
   padding: 5px;
+}
+
+.option-text input[type="text"] {
+  width: 200px;
 }
 
 .option-text-one {

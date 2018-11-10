@@ -117,7 +117,7 @@ class Question extends Component {
             <Link 
               to={`/question/${id}`}
               className='btn'>
-              View Poll
+              View
             </Link>
           </div>
         </div>
@@ -135,7 +135,7 @@ class Question extends Component {
             <img src={avatar} alt={`${name}`} className='avatar' />
           </div>
           <div className='card-content-right'>
-            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather</div>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
             <form onSubmit={this.handleSubmit}>
               <label className='option-text'>
                 <input 
