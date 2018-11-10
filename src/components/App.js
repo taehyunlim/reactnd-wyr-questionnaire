@@ -16,7 +16,7 @@ class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
-
+  // Passing down as a prop using render method: https://tylermcginnis.com/react-router-pass-props-to-components/
   selectTab = index => this.setState({ activeTab: index })
 
   render() {
