@@ -4,6 +4,7 @@ import Question from './Question'
 
 class QuestionPage extends Component {
   render() {
+    // DEBUG
     console.info(this.props)
     return (
       <div className='page-container'>

@@ -151,6 +151,17 @@ li {
 
 .option-text {
   margin: 10px;
+  padding: 5px;
+}
+
+.option-text-one {
+  border-radius: 15px;
+  background: rgba(255, 99, 132, 0.1);
+}
+
+.option-text-two {
+  border-radius: 15px;
+  background: rgba(54, 162, 235, 0.1);
 }
 
 /* COPY PASTA FOR FUTURE USE */
@@ -185,3 +196,43 @@ li {
 .content-toggle-details {
   padding: 0 10px;
 }
+
+
+/* RADIO BUTTON SOURCE: http://www.tipue.com/blog/radio-checkbox/ */
+
+.form-radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  position: relative;
+  background-color: #f1f1f1;
+  color: #666;
+  top: 6px;
+  height: 20px;
+  width: 20px;
+  border: 0;
+  border-radius: 50px;
+  cursor: pointer;     
+  margin-right: 7px;
+  outline: none;
+}
+.form-radio:checked::before {
+  position: absolute;
+  font: 13px/1 'Open Sans', sans-serif;
+  left: 6px;
+  top: 2px;
+  content: '\02143';
+  transform: rotate(40deg);
+}
+
+.form-radio:hover {
+  background-color: #f7f7f7;
+}
+
+.form-radio:checked {
+  background-color: #f1f1f1;
+}
+label {
+  cursor: pointer;
+} 

@@ -3,17 +3,25 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { formatDate, formatQuestion } from '../utils/helper'
 import { handleAnswerQuestion } from '../actions'
+import {Bar, HorizontalBar} from 'react-chartjs-2';
 
 class Question extends Component {
   state = {
-    selectedOption: ''
+    selectedOption: null,
+    isEditMode: false
+  }
+
+  componentDidMount() {
+    // prevAnswer: ['optionOne', 'optionTwo', null]
+    this.setState({ 
+      selectedOption: this.props.prevAnswer,
+      isEditMode: this.props.prevAnswer ? false : true
+    });
   }
 
   handleChange = (e) => {
     const selectedOption = e.target.value
-    this.setState(() => (
-      { selectedOption }
-    ))
+    this.setState(() => ({ selectedOption }))
   }
 
   handleSubmit = (e) => {
@@ -24,7 +32,17 @@ class Question extends Component {
       authedUser: this.props.authedUser,
       answer: this.state.selectedOption
     }
+    // Async API call
     dispatch(handleAnswerQuestion(data))
+      // Exit out of edit mode and switch to result view
+      .then(() => {
+        this.setState(() => ({ isEditMode: false }))
+      })
+  }
+
+  handleEditMode = (e) => {
+    e.preventDefault()
+    this.setState({ isEditMode: true })
   }
 
   render() {
@@ -34,9 +52,48 @@ class Question extends Component {
       return <p>[Error] This Question does not exist.</p>
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
+    const iconOptionOne = '1⃣'
+    const iconOptionTwo = '2️⃣' 
+
+    // Preview string
     const previewStringArray = textOptionOne.concat(' or ').concat(textOptionTwo).substring(0,30).split(' ')
-    // Take out the last partial word-string
-    previewStringArray.pop()
+    previewStringArray.pop() // Take out the last partial word-string
+
+    // Result data
+    const chartData = {
+      labels: [iconOptionOne, iconOptionTwo],
+      datasets: [{
+      backgroundColor: ['rgba(255, 99, 132, 0.3)', 'rgba(54, 162, 235, 0.3)'],
+      borderColor: 'rgb(255, 255, 255)',
+      
+      data: [votesOptionOne.length, votesOptionTwo.length],
+      }]
+    }
+    const chartOptions = {
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          // gridLines: false,
+          scaleLabel: {
+            display: true
+          },
+          ticks: {
+              min: 0,
+              max: votesOptionOne.length + votesOptionTwo.length,
+              stepSize: 1
+          }
+        }],
+        yAxes: [{
+          gridLines: false,
+          scaleLabel: {
+            display: true
+          }
+        }]
+      }
+    }
+
     // Return preview in the main page: '/'
     const preview = (
       <div className='card-container'>
@@ -77,6 +134,7 @@ class Question extends Component {
               <label className='option-text'>
                 <input 
                   type='radio' 
+                  className='form-radio'
                   value="optionOne" 
                   checked={this.state.selectedOption === 'optionOne'}
                   onChange={this.handleChange} />
@@ -85,6 +143,7 @@ class Question extends Component {
               <label className='option-text'>
                 <input 
                   type='radio' 
+                  className='form-radio'
                   value="optionTwo" 
                   checked={this.state.selectedOption === 'optionTwo'}
                   onChange={this.handleChange} />
@@ -97,7 +156,37 @@ class Question extends Component {
       </div>
     )
 
-    const currentView = this.props.isPollView ? pollView : preview
+    const resultView = (
+      <div className='card-container'>
+        <div className='card-top'>
+          <div>{name} asks:</div>
+          <div className='timestamp'>{timestamp}</div>
+        </div>
+        <div className='card-main'>
+          <div className='card-content-left'>
+            <img src={avatar} alt={`${name}`} className='avatar' />
+          </div>
+          <div className='card-content-right'>
+            <div className='option-text option-text-one'>
+              {`${iconOptionOne}  Would you rather ${textOptionOne}?`}
+            </div>
+            <div className='option-text option-text-two'>
+              {`${iconOptionTwo}  Would you rather ${textOptionTwo}?`}
+            </div>
+            <HorizontalBar data={chartData} options={chartOptions} /> 
+            <button className='btn' onClick={this.handleEditMode}>Edit</button>
+          </div>
+        </div>
+      </div>
+    )
+
+    // const currentView = this.props.isPollView ? pollView : preview
+    // TESTING:
+    const currentView = !this.props.isPollView 
+      ? preview 
+      : this.state.isEditMode
+        ? pollView
+        : resultView
 
     return (
       <Fragment>
@@ -110,11 +199,19 @@ class Question extends Component {
 function mapStateToProps ({ questions, users, authedUser }, props) {
   const { id } = props
   const question = questions[id]
+  // Return previous answer, if exists
+  let prevAnswer = question.optionOne.votes.includes(authedUser) 
+    ? 'optionOne'
+    : (question.optionTwo.votes.includes(authedUser) 
+        ? 'optionTwo'
+        : null)
+
   return {
     authedUser,
     question: question 
       ? formatQuestion(question, users[question.author], authedUser) 
-      : null
+      : null,
+    prevAnswer
   }
 }
 
