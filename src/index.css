@@ -109,6 +109,8 @@ li {
 }
 
 .tabBtn {
+  display: inline-flex;
+  justify-content: center;
   background: transparent;
   border: 0;
   font-family: inherit;
@@ -155,13 +157,13 @@ li {
 }
 
 .option-text-one {
-  border-radius: 15px;
   background: rgba(255, 99, 132, 0.1);
+  box-shadow: 0 0 3px 3px rgba(255, 99, 132, 0.1);
 }
 
 .option-text-two {
-  border-radius: 15px;
   background: rgba(54, 162, 235, 0.1);
+  box-shadow: 0 0 3px 3px rgba(54, 162, 235, 0.1);
 }
 
 /* COPY PASTA FOR FUTURE USE */

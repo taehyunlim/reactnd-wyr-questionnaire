@@ -64,8 +64,6 @@ class Question extends Component {
       labels: [iconOptionOne, iconOptionTwo],
       datasets: [{
       backgroundColor: ['rgba(255, 99, 132, 0.3)', 'rgba(54, 162, 235, 0.3)'],
-      borderColor: 'rgb(255, 255, 255)',
-      
       data: [votesOptionOne.length, votesOptionTwo.length],
       }]
     }
@@ -91,6 +89,14 @@ class Question extends Component {
             display: true
           }
         }]
+      },
+      layout: {
+        padding: {
+            left: 0,
+            right: 30,
+            top: 0,
+            bottom: 0
+        }
       }
     }
 
@@ -106,7 +112,7 @@ class Question extends Component {
             <img src={avatar} alt={`${name}`} className='avatar' />
           </div>
           <div className='card-content-right'>
-            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather</div>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
             <div className='poll-text'>{previewStringArray.join(' ').concat("...")}</div>
             <Link 
               to={`/question/${id}`}
