@@ -11,9 +11,14 @@ import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 
 class App extends Component {
+  // App level state for UI
+  state = { activeTab: 0 }
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
+
+  selectTab = index => this.setState({ activeTab: index })
+
   render() {
     return (
       <Router>
@@ -23,7 +28,7 @@ class App extends Component {
             <Nav />
             {!(this.props.loading) &&
               <div>
-                <Route path='/' exact component={Questions} />
+                <Route path='/' exact render={() => <Questions activeTab={this.state.activeTab} selectTab={this.selectTab} />} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
                 <Route path='/leader-board' component={Test} />
