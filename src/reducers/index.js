@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import { loadingBarReducer } from 'react-redux-loading'
 
 // Action types
-import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION } from '../actions/actionTypes'
+import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/actionTypes'
 
 function authedUser (state = null, action) {
   switch (action.type) {
@@ -52,6 +52,14 @@ function questions (state = {}, action) {
             // Filter out if authedUser voted for the other option in the previous state
             votes: state[action.id][otherOption].votes.filter((uid) => uid !== action.authedUser)
           }
+        }
+      }
+    case ADD_QUESTION:
+      const { question } = action
+      return {
+        ...state,
+        [question.id]: {
+          ...question
         }
       }
     default:

@@ -3,7 +3,7 @@ import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 // Action types
-import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION } from './actionTypes'
+import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from './actionTypes'
 
 // Action creators
 function setAuthedUser (id) {
@@ -34,6 +34,13 @@ function answerQuestion ({ authedUser, qid, answer}) {
   }
 }
 
+function addQuestion (question) {
+  return {
+    type: ADD_QUESTION,
+    question
+  }
+}
+
 // TODO: user authentication & sign-in flow
 const AUTHED_ID = 'taehyunlim'
 
@@ -50,15 +57,15 @@ export function handleInitialData () {
   }
 }
 
-export function handleAnswerQuestion (data) {
+export function handleAnswerQuestion (info) {
   return (dispatch) => {
     // Show loading bar
     dispatch(showLoading())
     // Create paylaod for the API call
     const payload = {
-      authedUser: data.authedUser,
-      qid: data.id,
-      answer: data.answer
+      authedUser: info.authedUser,
+      qid: info.id,
+      answer: info.answer
     }
     return saveQuestionAnswer(payload)
       // .then((res) => {
@@ -66,6 +73,28 @@ export function handleAnswerQuestion (data) {
       // })
       // Dispatch as a callback to API
       .then(() => dispatch(answerQuestion(payload)))
+      // Hide loading bar
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+export function handleAddQuestion(info, cb) {
+  return (dispatch) => {
+    // Show loading bar
+    dispatch(showLoading())
+    // Create paylaod for the API call
+    const payload = {
+      optionOneText: info.optionOneText,
+      optionTwoText: info.optionTwoText,
+      author: info.authedUser
+    }
+    return saveQuestion(payload)
+      // Grab the response (Question object) from API and dispatch 
+      .then((res) => {
+        dispatch(addQuestion(res))
+        // Invoke callback with the question id for redirect routing in the app
+        cb(res.id)
+      })
       // Hide loading bar
       .then(() => dispatch(hideLoading()))
   }
