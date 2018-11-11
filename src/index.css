@@ -151,6 +151,11 @@ li {
   font-size: 12px;
 }
 
+.btn[type='submit']:disabled {
+  color: #eee;
+  cursor: not-allowed;
+}
+
 .poll-text {
   padding: 0px 10px 10px 10px;
   margin-bottom: 10px;
