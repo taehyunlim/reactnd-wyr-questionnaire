@@ -49,7 +49,7 @@ class Question extends Component {
     // console.info(this.props)
     const { question } = this.props
     if (!question) {
-      return <p>[Error] This Question does not exist.</p>
+      return <p>[404] Question does not exist.</p>
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
     const iconOptionOne = '1⃣'
@@ -206,11 +206,13 @@ function mapStateToProps ({ questions, users, authedUser }, props) {
   const { id } = props
   const question = questions[id]
   // Return previous answer, if exists
-  let prevAnswer = question.optionOne.votes.includes(authedUser) 
-    ? 'optionOne'
-    : (question.optionTwo.votes.includes(authedUser) 
-        ? 'optionTwo'
-        : null)
+  let prevAnswer = !question 
+    ? null 
+    : question.optionOne.votes.includes(authedUser) 
+      ? 'optionOne'
+      : (question.optionTwo.votes.includes(authedUser) 
+          ? 'optionTwo'
+          : null)
 
   return {
     authedUser,
