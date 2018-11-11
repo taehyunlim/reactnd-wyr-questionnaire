@@ -100,6 +100,9 @@ class Question extends Component {
       }
     }
 
+    const checkPrevAnser = (
+      <span role="img" aria-label="checked">  ✔️</span>
+    )
     // Return preview in the main page: '/'
     const preview = (
       <div className='card-container'>
@@ -175,9 +178,11 @@ class Question extends Component {
           <div className='card-content-right'>
             <div className='option-text option-text-one'>
               {`${iconOptionOne}  Would you rather ${textOptionOne}?`}
+              {(this.props.prevAnswer === 'optionOne') && checkPrevAnser}
             </div>
             <div className='option-text option-text-two'>
               {`${iconOptionTwo}  Would you rather ${textOptionTwo}?`}
+              {(this.props.prevAnswer === 'optionTwo') && checkPrevAnser}
             </div>
             <HorizontalBar data={chartData} options={chartOptions} /> 
             <button className='btn' onClick={this.handleEditMode}>Edit</button>
