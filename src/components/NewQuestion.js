@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleAddQuestion } from '../actions'
-
 // import serializeForm from "form-serialize";
 
 class NewQuestion extends Component {
@@ -41,9 +40,9 @@ class NewQuestion extends Component {
   }
 
   render() {
-    // console.log(this.props)
-    if (this.state.toHome && this.state.id) {
-      return <Redirect to={`/question/${this.state.id}`} />
+    const { optionOneText, optionTwoText, toHome, id } = this.state
+    if (toHome && id) {
+      return <Redirect to={`/question/${id}`} />
     }
 
     return (
@@ -57,12 +56,12 @@ class NewQuestion extends Component {
               <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
               <form onSubmit={this.handleSubmit} autoComplete="off">
                 <label className='option-text'>
-                  Option 1: <input type="text" name="optionOneText" placeholder="First Option" value={this.props.optionOneText} onChange={this.handleChangeInput} />
+                  Option 1: <input type="text" name="optionOneText" placeholder="First Option" value={optionOneText} onChange={this.handleChangeInput} />
                 </label>
                 <label className='option-text'>
-                  Option 2: <input type="text" name="optionTwoText" placeholder="Second Option" value={this.props.optionTwoText} onChange={this.handleChangeInput} />
+                  Option 2: <input type="text" name="optionTwoText" placeholder="Second Option" value={optionTwoText} onChange={this.handleChangeInput} />
                 </label>
-                <button className='btn' type='submit' disabled={null}>Submit</button>
+                <button className='btn' type='submit' disabled={!optionOneText || !optionTwoText}>Submit</button>
               </form>
             </div>
           </div>
