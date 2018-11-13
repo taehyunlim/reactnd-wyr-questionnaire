@@ -3,7 +3,7 @@ import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 // Action types
-import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from './actionTypes'
+import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION, UPDATE_USER } from './actionTypes'
 
 // Action creators
 function setAuthedUser (id) {
@@ -33,11 +33,20 @@ function answerQuestion ({ authedUser, qid, answer}) {
     answer: answer
   }
 }
-
 function addQuestion (question) {
   return {
     type: ADD_QUESTION,
     question
+  }
+}
+function updateUser ({ authedUser, qid, answer }) {
+  // var answer = { id: "", option: "optionOne" || "optionTwo" }
+  // Either add question or update an answer
+  return {
+    type: UPDATE_USER,
+    qid: qid,
+    answer: answer,
+    authedUser: authedUser
   }
 }
 
@@ -72,7 +81,11 @@ export function handleAnswerQuestion (info) {
       //   console.log(res)
       // })
       // Dispatch as a callback to API
-      .then(() => dispatch(answerQuestion(payload)))
+      .then(() => {
+        // Update both questions and users store
+        dispatch(answerQuestion(payload))
+        dispatch(updateUser(payload))
+      })
       // Hide loading bar
       .then(() => dispatch(hideLoading()))
   }
@@ -91,7 +104,13 @@ export function handleAddQuestion(info, cb) {
     return saveQuestion(payload)
       // Grab the response (Question object) from API and dispatch 
       .then((res) => {
+        // Add question to the store
         dispatch(addQuestion(res))
+        // Update user by appending question id to the user's questions properity
+        dispatch(updateUser({ 
+          authedUser: info.authedUser, 
+          qid: res.id
+        }))
         // Invoke callback with the question id for redirect routing in the app
         cb(res.id)
       })

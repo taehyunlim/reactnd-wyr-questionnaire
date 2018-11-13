@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 import { loadingBarReducer } from 'react-redux-loading'
 
 // Action types
-import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../actions/actionTypes'
+import { SET_AUTHED_USER, RECEIVE_USERS, RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION, UPDATE_USER } from '../actions/actionTypes'
 
 function authedUser (state = null, action) {
   switch (action.type) {
@@ -20,6 +20,24 @@ function users (state = {}, action) {
       return {
         ...state,
         ...action.users
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        [action.authedUser]: {
+          ...state[action.authedUser],
+          questions: state[action.authedUser].questions.includes(action.qid) 
+            ? state[action.authedUser].questions
+            : state[action.authedUser].questions.concat([action.qid]),
+          answers: action.answer
+            ? { 
+                ...state[action.authedUser].answers,
+                [action.qid]: action.answer
+              }
+            : {
+                ...state[action.authedUser].answers
+              }
+        }
       }
     default:
       return state
