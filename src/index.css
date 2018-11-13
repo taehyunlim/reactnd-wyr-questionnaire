@@ -28,7 +28,7 @@ label {
 .container {
   max-width: 50em;
   margin: 0 auto;
-  padding: 5%;
+  padding: 2%;
 }
 
 .nav-container {
@@ -89,6 +89,48 @@ label {
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
+  border-bottom: 3px solid #ddd;
+}
+
+.nav li {
+  display: inline-flex;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  outline: none;
+}
+
+.nav ul li:nth-child(1) {
+  width: 33%;
+}
+
+.nav ul li:nth-child(2) {
+  width: 34%;
+}
+
+.nav ul li:nth-child(3) {
+  width: 33%;
+}
+
+
+.nav li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  width: 100%;
+}
+
+.nav li > a.active {
+  background: #eee;
+  border: 3px solid #ddd;
+  border-bottom: none;
 }
 
 /* .nav li:first-child {
