@@ -1,6 +1,6 @@
 /* CREATE REACT APP CSS */
 
-body {
+body, select {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -19,6 +19,11 @@ code {
 
 html {
   font-size: 1em;
+  background: #f1f1f1;
+}
+
+h3 {
+  margin: 0 0 0.5em 0;
 }
 
 label {
@@ -28,7 +33,7 @@ label {
 .container {
   max-width: 50em;
   margin: 0 auto;
-  padding: 2%;
+  padding: 1% 3%;
 }
 
 .nav-container {
@@ -49,15 +54,16 @@ label {
 
 .card-top, .card-main {
   text-align: center;
-  border: 1px solid #ddd;
+  border: 2px solid #666;  
   max-width: 35em;
   min-width: 15em;
 }
 
 .card-top {
   padding: 10px;
-  background: #eee;
+  background: #f7f7f7;
   margin-bottom: -1px;
+  border-bottom: none;
 }
 
 .card-main {
@@ -76,7 +82,7 @@ label {
 .card-content-right {
   display: inline-block;
   width: 65%;
-  border-left: 1px solid #ddd;
+  border-left: 2px solid #666;
   padding-left: 2.5%;
 }
 
@@ -89,7 +95,7 @@ label {
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
-  border-bottom: 3px solid #ddd;
+  border-bottom: 2px solid #666;
 }
 
 .nav li {
@@ -101,6 +107,7 @@ label {
   font-size: inherit;
   padding: 0;
   outline: none;
+  font-weight: 500;
 }
 
 .nav ul li:nth-child(1) {
@@ -128,8 +135,8 @@ label {
 }
 
 .nav li > a.active {
-  background: #eee;
-  border: 3px solid #ddd;
+  background: #f7f7f7;
+  border: 2px solid #666;
   border-bottom: none;
 }
 
@@ -147,32 +154,44 @@ li {
   text-decoration: none;
 }
 
+ul.questions-list li {
+  padding: 10px 0px;
+}
+
 .avatar {
-  height: 4rem;
-  border-radius: 2rem;
+  height: 3em;
+  border-radius: 2em;
   margin-right: 10%;
   vertical-align: super;
+}
+
+.tabList {
+  display: flex;
+  margin-top: 30px;
 }
 
 .tabBtn {
   display: inline-flex;
   justify-content: center;
   background: transparent;
-  border: 0;
   font-family: inherit;
   font-size: inherit;
-  padding: 1rem 2rem;
+  padding: 0.5em;
   outline: none;
   width: 50%;
+  border: 2px solid #666;
 }
 
-.activeBtn {
-  border-bottom: 3px solid #ddd
+.tabList button:nth-child(2) {
+  margin-left: -2px;
 }
 
-.tabList {
-  border-bottom: 1px solid #ddd;
-  margin: 0 10px;
+.tabList button:nth-child(1).activeBtn, .tabList button:nth-child(1):hover, .tabList button:nth-child(1):active {
+  box-shadow: inset 1px 1px 0px 1px #666;
+}
+
+.tabList button:nth-child(2).activeBtn, .tabList button:nth-child(2):hover, .tabList button:nth-child(2):active {
+  box-shadow: inset -1px 1px 0px 1px #666;
 }
 
 .timestamp {
@@ -184,7 +203,7 @@ li {
   /* text-transform: uppercase; */
   margin: 10px;
   padding: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #666;
   cursor: pointer;
   background: #fff;
   position: relative;
@@ -194,8 +213,13 @@ li {
 }
 
 .btn[type='submit']:disabled {
-  color: #eee;
+  color: #ccc;
   cursor: not-allowed;
+}
+
+.btn:hover {
+  box-shadow: inset -1px 1px 1px 1px #666;
+  border: 1px solid #6660;
 }
 
 .poll-text {
@@ -220,6 +244,14 @@ li {
 .option-text-two {
   background: rgba(54, 162, 235, 0.1);
   box-shadow: 0 0 3px 3px rgba(54, 162, 235, 0.1);
+}
+
+.select-login-picker {
+  border: none;
+  border-radius: 0;
+  background: #fff;
+  min-width: 20em;
+  height: 2.5em;
 }
 
 /* COPY PASTA FOR FUTURE USE */
@@ -264,7 +296,7 @@ li {
   appearance: none;
   display: inline-block;
   position: relative;
-  background-color: #f1f1f1;
+  background-color: #f7f7f7;
   color: #666;
   top: 6px;
   height: 20px;
@@ -285,7 +317,7 @@ li {
 }
 
 .form-radio:hover {
-  background-color: #f7f7f7;
+  background-color: #fff;
 }
 
 .form-radio:checked {
