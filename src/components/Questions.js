@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import Question from './Question'
 
 class Questions extends Component {
@@ -14,6 +15,11 @@ class Questions extends Component {
     const displayIds = (activeTab === 0) 
       ? idsToLists(answeredIds)
       : idsToLists(unansweredIds)
+
+    // Re-route to Login page if authedUser not set
+    if (!authedUser) {
+      return <Redirect to={'/login'} />
+    }
 
     return (
       <div className='page-container'>
