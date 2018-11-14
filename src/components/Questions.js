@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import Question from './Question'
 
 class Questions extends Component {
@@ -16,21 +15,18 @@ class Questions extends Component {
       ? idsToLists(answeredIds)
       : idsToLists(unansweredIds)
 
-    // Re-route to Login page if authedUser not set
-    if (!authedUser) {
-      return <Redirect to={'/login'} />
-    }
-
+    // Only return page if authedUser is set
     return (
-      <div className='page-container'>
-        <div className='tabList'>
-          <button className={`tabBtn ${(activeTab===0) && 'activeBtn'}`} onClick={() => this.props.selectTab(0)}>Answered Questions</button>
-          <button className={`tabBtn ${(activeTab===1) && 'activeBtn'}`} onClick={() => this.props.selectTab(1)}>Unanswered Questions</button>
-        </div>
-        <ul className='questions-list'>
-          {displayIds}
-        </ul>
-      </div>
+      (authedUser && 
+        <div className='page-container'>
+          <div className='tabList'>
+            <button className={`tabBtn ${(activeTab===0) && 'activeBtn'}`} onClick={() => this.props.selectTab(0)}>Answered Questions</button>
+            <button className={`tabBtn ${(activeTab===1) && 'activeBtn'}`} onClick={() => this.props.selectTab(1)}>Unanswered Questions</button>
+          </div>
+          <ul className='questions-list'>
+            {displayIds}
+          </ul>
+        </div>)
     )
   }
 }

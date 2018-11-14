@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+// import { Redirect, withRouter } from 'react-router-dom'
 import { handleAddQuestion, handleSetAuthedUser } from '../actions'
 // import serializeForm from "form-serialize";
 
@@ -8,6 +8,7 @@ class Login extends Component {
   state = {
     selectedUser: ''
   }
+
   handleChangeOption = (e) => {
     e.preventDefault()
     const selectedUser = e.target.value
@@ -18,8 +19,8 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.selectedUser)
-    this.props.dispatch(handleSetAuthedUser(this.state.selectedUser))
+    const { dispatch } = this.props
+    dispatch(handleSetAuthedUser(this.state.selectedUser)) 
   }
 
   render() {
