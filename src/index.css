@@ -219,7 +219,7 @@ ul.questions-list li {
 
 .btn:hover {
   box-shadow: inset -1px 1px 1px 1px #666;
-  border: 1px solid #6660;
+  border: 1px solid #666;
 }
 
 .poll-text {
