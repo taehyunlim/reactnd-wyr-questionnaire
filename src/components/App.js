@@ -9,6 +9,7 @@ import Test from './Test'
 import Questions from './Questions'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
+import Login from './Login'
 
 class App extends Component {
   // App level state for UI
@@ -32,6 +33,7 @@ class App extends Component {
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
                 <Route path='/leader-board' component={Test} />
+                <Route path='/login' component={Login} />
               </div>
             }
           </div>
@@ -41,9 +43,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, users }) {
   return {
-    loading: authedUser === null
+    loading: users === null
   }
 }
 
