@@ -51,7 +51,12 @@ function updateUser ({ authedUser, qid, answer }) {
 }
 
 // TODO: user authentication & sign-in flow
-const AUTHED_ID = 'taehyunlim'
+// const AUTHED_ID = 'taehyunlim'
+export function handleSetAuthedUser (id) {
+  return (dispatch) => {
+    return dispatch(setAuthedUser(id))
+  }
+}
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -60,7 +65,7 @@ export function handleInitialData () {
       .then(({ users, questions }) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        dispatch(setAuthedUser(AUTHED_ID))
+        // dispatch(setAuthedUser(AUTHED_ID))
         dispatch(hideLoading())
       })
   }
