@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter, Redirect } from 'react-router-dom'
-import { formatDate, formatQuestion } from '../utils/helper'
+import { Link } from 'react-router-dom'
+import { formatQuestion } from '../utils/helper'
 import { handleAnswerQuestion } from '../actions'
-import {Bar, HorizontalBar} from 'react-chartjs-2';
+import { HorizontalBar} from 'react-chartjs-2';
 
 class Question extends Component {
   state = {
@@ -191,19 +191,12 @@ class Question extends Component {
       </div>
     )
 
-    // const currentView = this.props.isPollView ? pollView : preview
-    // TESTING:
     const currentView = !this.props.isPollView 
       ? preview 
       : this.state.isEditMode
         ? pollView
         : resultView
 
-    // Re-route to Login page if authedUser not set
-    if (!this.props.authedUser) {
-      return <Redirect to={'/login'} />
-    }
-  
     return (
       <Fragment>
         {currentView}
