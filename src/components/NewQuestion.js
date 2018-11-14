@@ -45,6 +45,7 @@ class NewQuestion extends Component {
       return <Redirect to={`/question/${id}`} />
     }
 
+    // Re-route to Login page if authedUser not set
     if (!this.props.authedUser) {
       return <Redirect to={'/login'} />
     }
