@@ -19,29 +19,10 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(this.state.selectedUser)
-
     this.props.dispatch(handleSetAuthedUser(this.state.selectedUser))
-
-    // const { optionOneText, optionTwoText } = this.state
-    // const { dispatch, authedUser } = this.props // From Redux Store
-    // const info = {
-    //   optionOneText,
-    //   optionTwoText,
-    //   authedUser 
-    // }
-    // dispatch(handleAddQuestion(info, (id) => {
-    //   console.log(id)
-    //   this.setState(() => ({
-    //     toHome: true,
-    //     id,
-    //     optionOneText: '',
-    //     optionTwoText: '',
-    //   }))
-    // }))
   }
 
   render() {
-    console.log(this.props)
     const { users, authedUser } = this.props
     const dropdownOptions = (name, id) => (
       <option key={id} value={id}>{name}</option>
