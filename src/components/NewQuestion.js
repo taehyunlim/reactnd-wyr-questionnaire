@@ -45,6 +45,10 @@ class NewQuestion extends Component {
       return <Redirect to={`/question/${id}`} />
     }
 
+    if (!this.props.authedUser) {
+      return <Redirect to={'/login'} />
+    }
+
     return (
       <div className='page-container'>
         <div className='card-container'>
