@@ -27,13 +27,15 @@ class App extends Component {
           <LoadingBar />
           <div className="container">
             <Nav />
+            {!this.props.authedUser && 
+              <Login />
+            }
             {!(this.props.loading) &&
               <div>
                 <Route path='/' exact render={() => <Questions activeTab={this.state.activeTab} selectTab={this.selectTab} />} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
                 <Route path='/leader-board' component={Test} />
-                <Route path='/login' component={Login} />
               </div>
             }
           </div>
@@ -45,7 +47,8 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser, users }) {
   return {
-    loading: users === null
+    loading: users === null,
+    authedUser
   }
 }
 
