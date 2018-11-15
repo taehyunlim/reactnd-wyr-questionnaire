@@ -52,8 +52,8 @@ class Question extends Component {
       return <p>[404] Question does not exist.</p>
     }
     const { name, id, timestamp, avatar, votesOptionOne, votesOptionTwo, textOptionOne, textOptionTwo } = question
-    const iconOptionOne = '1⃣'
-    const iconOptionTwo = '2️⃣' 
+    const iconOptionOne = (<span className='option-number'>1</span>)
+    const iconOptionTwo = (<span className='option-number'>2</span>)
 
     // Preview string
     const previewStringArray = textOptionOne.concat(' or ').concat(textOptionTwo).substring(0,30).split(' ')
@@ -61,7 +61,7 @@ class Question extends Component {
 
     // Result data
     const chartData = {
-      labels: [iconOptionOne, iconOptionTwo],
+      labels: ['① ', '② '],
       datasets: [{
       backgroundColor: ['rgba(255, 99, 132, 0.3)', 'rgba(54, 162, 235, 0.3)'],
       data: [votesOptionOne.length, votesOptionTwo.length],
@@ -176,12 +176,13 @@ class Question extends Component {
             <img src={avatar} alt={`${name}`} className='avatar' />
           </div>
           <div className='card-content-right'>
+            <div style={{fontStyle: 'italic', padding: '7px 0'}}>You would rather...</div>
             <div className='option-text option-text-one'>
-              {`${iconOptionOne}  Would you rather ${textOptionOne}?`}
+              {iconOptionOne}{textOptionOne[0].toUpperCase() + textOptionOne.slice(1)}
               {(this.props.prevAnswer === 'optionOne') && checkPrevAnser}
             </div>
             <div className='option-text option-text-two'>
-              {`${iconOptionTwo}  Would you rather ${textOptionTwo}?`}
+              {iconOptionTwo}{textOptionTwo[0].toUpperCase() + textOptionTwo.slice(1)}
               {(this.props.prevAnswer === 'optionTwo') && checkPrevAnser}
             </div>
             <HorizontalBar data={chartData} options={chartOptions} /> 

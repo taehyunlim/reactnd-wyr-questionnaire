@@ -95,7 +95,6 @@ label {
   flex-direction: row;
   justify-content: flex-start;
   text-decoration: none;
-  border-bottom: 2px solid #666;
 }
 
 .nav li {
@@ -108,10 +107,12 @@ label {
   padding: 0;
   outline: none;
   font-weight: 500;
+  border: 2px solid #666;
 }
 
 .nav ul li:nth-child(1) {
   width: 33%;
+  margin-right: -2px;
 }
 
 .nav ul li:nth-child(2) {
@@ -120,8 +121,12 @@ label {
 
 .nav ul li:nth-child(3) {
   width: 33%;
+  margin-left: -2px;
 }
 
+.nav ul li:nth-child(1):hover, .nav ul li:nth-child(2):hover, .nav ul li:nth-child(3):hover {
+  box-shadow: inset 0px 1px 1px 1px #666;
+}
 
 .nav li a {
   text-decoration: none;
@@ -129,15 +134,13 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
   padding: 10px;
   width: 100%;
 }
 
 .nav li > a.active {
   background: #f7f7f7;
-  border: 2px solid #666;
-  border-bottom: none;
+  box-shadow: inset 0px 1px 1px 1px #666;
 }
 
 /* .nav li:first-child {
@@ -187,11 +190,11 @@ ul.questions-list li {
 }
 
 .tabList button:nth-child(1).activeBtn, .tabList button:nth-child(1):hover, .tabList button:nth-child(1):active {
-  box-shadow: inset 1px 1px 0px 1px #666;
+  box-shadow: inset 1px 1px 1px 1px #666;
 }
 
 .tabList button:nth-child(2).activeBtn, .tabList button:nth-child(2):hover, .tabList button:nth-child(2):active {
-  box-shadow: inset -1px 1px 0px 1px #666;
+  box-shadow: inset -1px 1px 1px 1px #666;
 }
 
 .timestamp {
@@ -200,7 +203,6 @@ ul.questions-list li {
 }
 
 .btn {
-  /* text-transform: uppercase; */
   margin: 10px;
   padding: 5px;
   border: 1px solid #666;
@@ -218,7 +220,7 @@ ul.questions-list li {
 }
 
 .btn:hover {
-  box-shadow: inset -1px 1px 1px 1px #666;
+  box-shadow: inset 0px 1px 1px 1px #666;
   border: 1px solid #666;
 }
 
@@ -287,6 +289,17 @@ ul.questions-list li {
   padding: 0 10px;
 }
 
+.option-number {
+  border: 1px solid;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 10px;
+  font-size: 10px;
+  position: relative;
+  top: -2px;
+  margin-right: 5px;
+}
 
 /* RADIO BUTTON SOURCE: http://www.tipue.com/blog/radio-checkbox/ */
 
