@@ -10,6 +10,7 @@ import Questions from './Questions'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import Login from './Login'
+import LeaderBoard from './LeaderBoard'
 
 class App extends Component {
   // App level state for UI
@@ -35,7 +36,7 @@ class App extends Component {
                 <Route path='/' exact render={() => <Questions activeTab={this.state.activeTab} selectTab={this.selectTab} />} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
-                <Route path='/leader-board' component={Test} />
+                <Route path='/leader-board' component={LeaderBoard} />
               </div>
             }
           </div>
