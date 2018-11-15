@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import ProfileWidget from './ProfileWidget'
 
 export const Nav = () => {
   return (
@@ -19,6 +20,11 @@ export const Nav = () => {
           <li>
             <NavLink to='/leader-board' activeClassName='active'>
               Leader Board
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/profile' activeClassName='active'>
+              <ProfileWidget />
             </NavLink>
           </li>
         </ul>

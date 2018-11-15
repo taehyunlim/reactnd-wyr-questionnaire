@@ -111,21 +111,22 @@ label {
 }
 
 .nav ul li:nth-child(1) {
-  width: 33%;
+  width: 25%;
   margin-right: -2px;
 }
 
 .nav ul li:nth-child(2) {
-  width: 34%;
+  width: 25%;
+  margin-right: -2px;
 }
 
 .nav ul li:nth-child(3) {
-  width: 33%;
-  margin-left: -2px;
+  width: 25%;
+  margin-right: -2px;
 }
 
-.nav ul li:nth-child(1):hover, .nav ul li:nth-child(2):hover, .nav ul li:nth-child(3):hover {
-  box-shadow: inset 0px 1px 1px 1px #666;
+.nav ul li:nth-child(4) {
+  width: 25%;
 }
 
 .nav li a {
@@ -134,7 +135,7 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 10px 3px;
   width: 100%;
   background: #f7f7f7;
 }
@@ -144,9 +145,13 @@ label {
   box-shadow: inset 0px 1px 1px 1px #666;
 }
 
-/* .nav li:first-child {
-  padding-left: 30px;
-} */
+.nav li a:nth-child(1):hover, .nav li a:nth-child(1):active, 
+.nav li a:nth-child(2):hover, .nav li a:nth-child(2):active, 
+.nav li a:nth-child(3):hover, .nav li a:nth-child(3):active, 
+.nav li a:nth-child(4):hover, .nav li a:nth-child(4):active {
+  box-shadow: inset 0px 1px 1px 1px #666;
+  background: #f1f1f1;
+}
 
 ul {
   padding-left: 0;
@@ -169,6 +174,31 @@ ul.questions-list li {
   vertical-align: super;
 }
 
+.widget-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.avatar-widget {
+  height: 1.5em;
+  border-radius: 1em;
+  margin-right: 5%;
+  margin-left: -5%;
+  align-items: center;
+}
+
+.avatar-widget-text {
+  display: flex;
+  align-items: center;
+  font-size: 0.75em;
+}
+
+@media only screen and (max-width: 600px) {
+  .avatar-widget-text {
+      display: none;
+  }
+}
+
 .tabList {
   display: flex;
   margin-top: 30px;
@@ -181,7 +211,7 @@ ul.questions-list li {
   background: transparent;
   font-family: inherit;
   font-size: inherit;
-  padding: 0.5em;
+  padding: 5px;
   outline: none;
   width: 50%;
   border: 2px solid #666;
