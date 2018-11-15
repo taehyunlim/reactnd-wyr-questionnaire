@@ -178,11 +178,11 @@ class Question extends Component {
           <div className='card-content-right'>
             <div style={{fontStyle: 'italic', padding: '7px 0'}}>You would rather...</div>
             <div className='option-text option-text-one'>
-              {iconOptionOne}{textOptionOne[0].toUpperCase() + textOptionOne.slice(1)}
+              {`① ` + textOptionOne[0].toUpperCase() + textOptionOne.slice(1)}
               {(this.props.prevAnswer === 'optionOne') && checkPrevAnser}
             </div>
             <div className='option-text option-text-two'>
-              {iconOptionTwo}{textOptionTwo[0].toUpperCase() + textOptionTwo.slice(1)}
+              {`② ` + textOptionTwo[0].toUpperCase() + textOptionTwo.slice(1)}
               {(this.props.prevAnswer === 'optionTwo') && checkPrevAnser}
             </div>
             <HorizontalBar data={chartData} options={chartOptions} /> 
