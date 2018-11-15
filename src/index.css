@@ -136,10 +136,11 @@ label {
   align-items: center;
   padding: 10px;
   width: 100%;
+  background: #f7f7f7;
 }
 
 .nav li > a.active {
-  background: #f7f7f7;
+  background: #f1f1f1;
   box-shadow: inset 0px 1px 1px 1px #666;
 }
 
@@ -171,6 +172,7 @@ ul.questions-list li {
 .tabList {
   display: flex;
   margin-top: 30px;
+  background: #f7f7f7;
 }
 
 .tabBtn {
@@ -191,10 +193,12 @@ ul.questions-list li {
 
 .tabList button:nth-child(1).activeBtn, .tabList button:nth-child(1):hover, .tabList button:nth-child(1):active {
   box-shadow: inset 1px 1px 1px 1px #666;
+  background: #f1f1f1;
 }
 
 .tabList button:nth-child(2).activeBtn, .tabList button:nth-child(2):hover, .tabList button:nth-child(2):active {
   box-shadow: inset -1px 1px 1px 1px #666;
+  background: #f1f1f1;
 }
 
 .timestamp {
