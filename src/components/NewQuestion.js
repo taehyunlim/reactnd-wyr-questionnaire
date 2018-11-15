@@ -24,8 +24,8 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText } = this.state
     const { dispatch, authedUser } = this.props // From Redux Store
     const info = {
-      optionOneText,
-      optionTwoText,
+      optionOneText: optionOneText.trim(),
+      optionTwoText: optionTwoText.trim(),
       authedUser 
     }
     dispatch(handleAddQuestion(info, (id) => {
