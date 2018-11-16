@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Redirect, withRouter } from 'react-router-dom'
-import { handleAddQuestion, handleSetAuthedUser } from '../actions'
-// import serializeForm from "form-serialize";
+import { handleSetAuthedUser } from '../actions'
 
 class Login extends Component {
   state = {
@@ -24,7 +22,7 @@ class Login extends Component {
   }
 
   render() {
-    const { users, authedUser } = this.props
+    const { users } = this.props
     const dropdownOptions = (name, id) => (
       <option key={id} value={id}>{name}</option>
     )
@@ -55,9 +53,8 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users }) {
+function mapStateToProps ({ users }) {
   return {
-    authedUser,
     users
   }
 }
