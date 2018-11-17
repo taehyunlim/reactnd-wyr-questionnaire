@@ -6,13 +6,13 @@ class QuestionPage extends Component {
   
   render() {
     const { authedUser, id } = this.props
+    
+    // Only return page if authedUser is set
+    if (!authedUser) return null
     return (
-      // Only return page if authedUser is set
-      (authedUser &&
-        <div className='page-container'>
-          <Question id={id} isPollView={true} />
-        </div>
-      )
+      <div className='page-container'>
+        <Question id={id} isPollView={true} />
+      </div>
     )
   }
 }

@@ -16,17 +16,17 @@ class Questions extends Component {
       : idsToLists(unansweredIds)
 
     // Only return page if authedUser is set
+    if (!authedUser) return null
     return (
-      (authedUser && 
-        <div className='page-container'>
-          <div className='tabList'>
-            <button className={`tabBtn ${(activeTab===0) && 'activeBtn'}`} onClick={() => this.props.selectTab(0)}>Answered Questions</button>
-            <button className={`tabBtn ${(activeTab===1) && 'activeBtn'}`} onClick={() => this.props.selectTab(1)}>Unanswered Questions</button>
-          </div>
-          <ul className='questions-list'>
-            {displayIds}
-          </ul>
-        </div>)
+      <div className='page-container'>
+        <div className='tabList'>
+          <button className={`tabBtn ${(activeTab===0) && 'activeBtn'}`} onClick={() => this.props.selectTab(0)}>Answered Questions</button>
+          <button className={`tabBtn ${(activeTab===1) && 'activeBtn'}`} onClick={() => this.props.selectTab(1)}>Unanswered Questions</button>
+        </div>
+        <ul className='questions-list'>
+          {displayIds}
+        </ul>
+      </div>
     )
   }
 }

@@ -39,6 +39,8 @@ class NewQuestion extends Component {
     }))
   }
 
+  
+
   render() {
     const { optionOneText, optionTwoText, toHome, id } = this.state
     if (toHome && id) {
@@ -46,30 +48,29 @@ class NewQuestion extends Component {
     }
 
     // Only return page if authedUser is set
+    if (!this.props.authedUser) return null
     return (
-      (this.props.authedUser && 
-        <div className='page-container'>
-          <div className='card-container'>
-            <div className='card-top'>
-              <div>New Question</div>
-            </div>
-            <div className='card-main'>
-              <div className='card-content-full'>
-                <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
-                <form onSubmit={this.handleSubmit} autoComplete="off">
-                  <label className='option-text'>
-                    Option 1: <input type="text" name="optionOneText" placeholder="First Option" value={optionOneText} onChange={this.handleChangeInput} />
-                  </label>
-                  <label className='option-text'>
-                    Option 2: <input type="text" name="optionTwoText" placeholder="Second Option" value={optionTwoText} onChange={this.handleChangeInput} />
-                  </label>
-                  <button className='btn' type='submit' disabled={!optionOneText || !optionTwoText}>Submit</button>
-                </form>
-              </div>
+      <div className='page-container'>
+        <div className='card-container'>
+          <div className='card-top'>
+            <div>New Question</div>
+          </div>
+          <div className='card-main'>
+            <div className='card-content-full'>
+              <div style={{fontStyle: 'italic', padding: '7px 0'}}>Would you rather...</div>
+              <form onSubmit={this.handleSubmit} autoComplete="off">
+                <label className='option-text'>
+                  Option 1: <input type="text" name="optionOneText" placeholder="First Option" value={optionOneText} onChange={this.handleChangeInput} />
+                </label>
+                <label className='option-text'>
+                  Option 2: <input type="text" name="optionTwoText" placeholder="Second Option" value={optionTwoText} onChange={this.handleChangeInput} />
+                </label>
+                <button className='btn' type='submit' disabled={!optionOneText || !optionTwoText}>Submit</button>
+              </form>
             </div>
           </div>
         </div>
-      )
+      </div>
     )
   }
 }
