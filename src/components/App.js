@@ -11,6 +11,7 @@ import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import Login from './Login'
 import LeaderBoard from './LeaderBoard'
+import QuestionsByUser from './QuestionsByUser'
 
 class App extends Component {
   // App level state for UI
@@ -22,22 +23,24 @@ class App extends Component {
   selectTab = index => this.setState({ activeTab: index })
 
   render() {
+    const { authedUser, loading } = this.props
+
     return (
       <Router>
         <Fragment>
           <LoadingBar />
           <div className="container">
             <Nav />
-            {!this.props.authedUser && 
+            {!authedUser && 
               <Login />
             }
-            {!(this.props.loading) &&
+            {!(loading) &&
               <div>
                 <Route path='/' exact render={() => <Questions activeTab={this.state.activeTab} selectTab={this.selectTab} />} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
                 <Route path='/leader-board' component={LeaderBoard} />
-                <Route path='/profile' component={Test} />
+                <Route path='/profile' render={() => <QuestionsByUser activeTab={this.state.activeTab} selectTab={this.selectTab} user={authedUser} />} />
               </div>
             }
           </div>
