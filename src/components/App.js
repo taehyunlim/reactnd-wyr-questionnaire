@@ -5,7 +5,6 @@ import { handleInitialData } from '../actions'
 import LoadingBar from 'react-redux-loading'
 import './App.css';
 import { Nav } from './Nav'
-import Test from './Test'
 import Questions from './Questions'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'

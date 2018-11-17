@@ -52,6 +52,16 @@ label {
   display: inline;
 }
 
+.card-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-container a .card-top:hover {
+  box-shadow: inset 0px 1px 1px 1px #666;
+  background: #f1f1f1;
+}
+
 .card-top, .card-main {
   text-align: center;
   border: 2px solid #666;  
@@ -100,13 +110,36 @@ label {
 
 .scorecard-content-center {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  border-left: 2px solid #666;
+  border-right: 2px solid #666;
 }
 
 .scorecard-content-right {
-  display: inline-block;
-  width: 65%;
-  border-left: 2px solid #666;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
   padding-left: 2.5%;
+}
+
+.scorecard-content-center .text {
+  display: flex;
+  justify-content: center;
+  margin: 5px auto;
+}
+
+.scorecard-content-right span {
+  display: flex;
+  justify-content: center;
+  font-size: 11px;
+  color: #969696;
+}
+
+.scorecard-content-right .score {
+  font-size: 40px;
+  margin: auto 0;
 }
 
 .nav ul {
@@ -182,14 +215,18 @@ li {
   text-decoration: none;
 }
 
+ul.questions-list {
+  margin-top: 5px;
+}
+
 ul.questions-list li {
-  padding: 10px 0px;
+  padding: 5px 0px;
 }
 
 .avatar {
   height: 3em;
   border-radius: 2em;
-  margin-right: 10%;
+  margin-right: 20%;
   vertical-align: super;
 }
 
@@ -220,7 +257,6 @@ ul.questions-list li {
 
 .tabList {
   display: flex;
-  margin-top: 30px;
   background: #f7f7f7;
 }
 
@@ -232,12 +268,12 @@ ul.questions-list li {
   font-size: inherit;
   padding: 5px;
   outline: none;
-  width: 50%;
+  width: 100%;
   border: 2px solid #666;
 }
 
 .tabList button:nth-child(2) {
-  margin-left: -2px;
+  margin: 0 -2px;
 }
 
 .tabList button:nth-child(1).activeBtn, .tabList button:nth-child(1):hover, .tabList button:nth-child(1):active {
@@ -246,6 +282,11 @@ ul.questions-list li {
 }
 
 .tabList button:nth-child(2).activeBtn, .tabList button:nth-child(2):hover, .tabList button:nth-child(2):active {
+  box-shadow: inset 0px 1px 1px 1px #666;
+  background: #f1f1f1;
+}
+
+.tabList button:nth-child(3).activeBtn, .tabList button:nth-child(3):hover, .tabList button:nth-child(3):active {
   box-shadow: inset -1px 1px 1px 1px #666;
   background: #f1f1f1;
 }
@@ -278,6 +319,8 @@ ul.questions-list li {
 }
 
 .poll-text {
+  display: flex;
+  justify-content: center;
   padding: 0px 10px 10px 10px;
   margin-bottom: 10px;
 }

@@ -10,20 +10,23 @@ export const ScoreCard = (props) => {
   const countA = Object.keys(answers).length
   return (
     <div className='card-container'>
-      <div className='card-top'>
-        <Link to={`/profile/${id}`}>{name}</Link>
-      </div>
+      <Link to={`/profile/${id}`}>
+        <div className='card-top'>{name}</div>
+      </Link>
       <div className='card-main'>
         <div className='scorecard-content-left'>
           <img src={avatarURL} alt={`${name}`} className='avatar' />
         </div>
         <div className='scorecard-content-center'>
-          <div style={{fontStyle: 'italic', padding: '7px 0'}}>Points</div>
-          <div className='poll-text'># of Questions: {countQ}</div>
-          <div className='poll-text'># of Answers: {countA}</div>
+          <div className='text'># of Questions: {countQ}</div>
+          <div className='text'># of Answers: {countA}</div>
         </div>
         <div className='scorecard-content-right'>
-          Test
+          <span>Total Score</span>
+          <div className={'score'}>
+            {countA + countQ}
+          </div>
+
         </div>
         
       </div>
