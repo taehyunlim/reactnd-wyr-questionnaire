@@ -90,6 +90,25 @@ label {
   width: 100%;
 }
 
+.scorecard-content-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  width: 25%;
+}
+
+.scorecard-content-center {
+  display: flex;
+}
+
+.scorecard-content-right {
+  display: inline-block;
+  width: 65%;
+  border-left: 2px solid #666;
+  padding-left: 2.5%;
+}
+
 .nav ul {
   display: flex;
   flex-direction: row;

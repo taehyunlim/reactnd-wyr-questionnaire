@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { ScoreCard } from './ScoreCard' 
 
 class LeaderBoard extends Component {
   
@@ -12,7 +13,9 @@ class LeaderBoard extends Component {
     return (
       <div className='page-container'>
         {userIds.map((userId) => (
-          <li key={userId}>{userId}</li>
+          <li key={userId}>
+            <ScoreCard user={users[userId]} />
+          </li>
         ))}
       </div>
     )
