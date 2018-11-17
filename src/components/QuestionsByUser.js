@@ -34,12 +34,14 @@ class QuestionsByUser extends Component {
 function mapStateToProps ({ authedUser, users, questions }, props) {
   const answeredIds = Object.keys(questions)
     .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    .filter(id => questions[id].author === props.user)
     .filter(id => {
       let q = questions[id]
       return ([...q.optionOne.votes, ...q.optionTwo.votes].includes(authedUser))
     })
   const unansweredIds = Object.keys(questions)
     .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    .filter(id => questions[id].author === props.user)
     .filter(id => {
       let q = questions[id]
       return (![...q.optionOne.votes, ...q.optionTwo.votes].includes(authedUser))
@@ -52,7 +54,6 @@ function mapStateToProps ({ authedUser, users, questions }, props) {
     unansweredIds,
     user: props.user,
     questionIds: Object.keys(questions)
-      .filter(id => questions[id].author === props.user)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }
 }
