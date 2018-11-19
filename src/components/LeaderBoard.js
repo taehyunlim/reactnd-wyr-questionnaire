@@ -3,23 +3,8 @@ import { connect } from 'react-redux'
 import { ScoreCard } from './ScoreCard' 
 
 class LeaderBoard extends Component {
-  state = {
-    sortBy: ''
-  }
-
-  componentDidMount() {
-    this.setState({ 
-      sortBy: 'totalScore'
-    });
-  }
-
-  handleSortBy = (index) => {
-    const sortTypes = ['totalScore', 'questions', 'answers']
-    this.setState({ sortBy: sortTypes[index] }, this.props.selectTabSort(index))
-  }
-
   render() {
-    const { questions, users, authedUser, activeTabSort } = this.props
+    const { questions, users, authedUser, activeTabSort, selectTabSort } = this.props
 
     // Sort userIds by sort type
     let userIdsBySortType = {}
@@ -55,18 +40,19 @@ class LeaderBoard extends Component {
     }
 
     // console.log(userIdsBySortType)
+    const activeSortBy = sortTypes[activeTabSort]
 
     // Only return page if authedUser is set
     if (!authedUser) return null
     return (
       <div className='page-container'>
         <div className='tabList'>
-          <button className={`tabBtn ${(activeTabSort===0) && 'activeBtn'}`} onClick={() => {this.handleSortBy(0)}}>Sort By Total Score</button>
-          <button className={`tabBtn ${(activeTabSort===1) && 'activeBtn'}`} onClick={() => {this.handleSortBy(1)}}>Sort By Questions</button>
-          <button className={`tabBtn ${(activeTabSort===2) && 'activeBtn'}`} onClick={() => {this.handleSortBy(2)}}>Sort By Answers</button>
+          <button className={`tabBtn ${(activeTabSort===0) && 'activeBtn'}`} onClick={() => {selectTabSort(0)}}>Sort By Total Score</button>
+          <button className={`tabBtn ${(activeTabSort===1) && 'activeBtn'}`} onClick={() => {selectTabSort(1)}}>Sort By Questions</button>
+          <button className={`tabBtn ${(activeTabSort===2) && 'activeBtn'}`} onClick={() => {selectTabSort(2)}}>Sort By Answers</button>
         </div>
         <ul className={'questions-list'}>
-        {userIdsBySortType[this.state.sortBy].map((userId) => (
+        {userIdsBySortType[activeSortBy].map((userId) => (
           <li key={userId}>
             <ScoreCard key={userId} user={users[userId]} />
           </li>
