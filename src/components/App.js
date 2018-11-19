@@ -14,12 +14,16 @@ import QuestionsByUser from './QuestionsByUser'
 
 class App extends Component {
   // App level state for UI
-  state = { activeTab: 0 }
+  state = { 
+    activeTab: 0,
+    activeTabSort: 0
+  }
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
   // Passing down as a prop using render method: https://tylermcginnis.com/react-router-pass-props-to-components/
   selectTab = index => this.setState({ activeTab: index })
+  selectTabSort = index => this.setState( {activeTabSort: index })
 
   render() {
     const { authedUser, loading } = this.props
@@ -38,8 +42,8 @@ class App extends Component {
                 <Route path='/' exact render={() => <Questions activeTab={this.state.activeTab} selectTab={this.selectTab} />} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/new' component={NewQuestion} />
-                <Route path='/leader-board' component={LeaderBoard} />
-                <Route path='/profile' render={() => <QuestionsByUser activeTab={this.state.activeTab} selectTab={this.selectTab} user={authedUser} />} />
+                <Route path='/leader-board' exact render={() => <LeaderBoard activeTabSort={this.state.activeTabSort} selectTabSort={this.selectTabSort} />} />
+                <Route path='/profile' exact render={() => <QuestionsByUser activeTab={this.state.activeTab} selectTab={this.selectTab} user={authedUser} />} />
               </div>
             }
           </div>
