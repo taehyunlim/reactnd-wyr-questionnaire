@@ -159,6 +159,7 @@ class Question extends Component {
                 {textOptionTwo}
               </label>
               <button className='btn' type='submit' disabled={!this.state.selectedOption}>Submit</button>
+              <button className='btn' onClick={() => this.setState({isEditMode: false})}>Cancel</button>
             </form>
           </div>
         </div>
