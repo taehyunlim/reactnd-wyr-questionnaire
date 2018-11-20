@@ -159,7 +159,11 @@ class Question extends Component {
                 {textOptionTwo}
               </label>
               <button className='btn' type='submit' disabled={!this.state.selectedOption}>Submit</button>
-              <button className='btn' onClick={() => this.setState({isEditMode: false})}>Cancel</button>
+              {this.props.prevAnswer && 
+                <button className='btn' onClick={() => this.setState({isEditMode: false})}>Cancel</button>}
+              {!this.props.prevAnswer &&
+                <Link to={`/`} className='btn'>Back</Link>
+              }
             </form>
           </div>
         </div>
@@ -188,6 +192,7 @@ class Question extends Component {
             </div>
             <HorizontalBar data={chartData} options={chartOptions} /> 
             <button className='btn' onClick={this.handleEditMode}>Edit</button>
+            <Link to={`/`} className='btn'>Back</Link>
           </div>
         </div>
       </div>
