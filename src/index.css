@@ -1,6 +1,7 @@
 /* CREATE REACT APP CSS */
 
-body, select {
+body,
+select {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -62,9 +63,10 @@ label {
   background: #f1f1f1;
 }
 
-.card-top, .card-main {
+.card-top,
+.card-main {
   text-align: center;
-  border: 2px solid #666;  
+  border: 2px solid #666;
   max-width: 35em;
   min-width: 15em;
 }
@@ -78,7 +80,7 @@ label {
 
 .card-main {
   display: flex;
-  padding: 5%
+  padding: 5%;
 }
 
 .card-content-left {
@@ -198,10 +200,14 @@ label {
   box-shadow: inset 0px 1px 1px 1px #666;
 }
 
-.nav li a:nth-child(1):hover, .nav li a:nth-child(1):active, 
-.nav li a:nth-child(2):hover, .nav li a:nth-child(2):active, 
-.nav li a:nth-child(3):hover, .nav li a:nth-child(3):active, 
-.nav li a:nth-child(4):hover, .nav li a:nth-child(4):active {
+.nav li a:nth-child(1):hover,
+.nav li a:nth-child(1):active,
+.nav li a:nth-child(2):hover,
+.nav li a:nth-child(2):active,
+.nav li a:nth-child(3):hover,
+.nav li a:nth-child(3):active,
+.nav li a:nth-child(4):hover,
+.nav li a:nth-child(4):active {
   box-shadow: inset 0px 1px 1px 1px #666;
   background: #f1f1f1;
 }
@@ -252,13 +258,14 @@ ul.questions-list li {
 
 @media only screen and (max-width: 600px) {
   .avatar-widget-text {
-      display: none;
+    display: none;
   }
 }
 
 .tabList {
   display: flex;
   background: #f7f7f7;
+  margin-top: 16px;
 }
 
 .tabBtn {
@@ -277,17 +284,23 @@ ul.questions-list li {
   margin: 0 -2px;
 }
 
-.tabList button:nth-child(1).activeBtn, .tabList button:nth-child(1):hover, .tabList button:nth-child(1):active {
+.tabList button:nth-child(1).activeBtn,
+.tabList button:nth-child(1):hover,
+.tabList button:nth-child(1):active {
   box-shadow: inset 1px 1px 1px 1px #666;
   background: #f1f1f1;
 }
 
-.tabList button:nth-child(2).activeBtn, .tabList button:nth-child(2):hover, .tabList button:nth-child(2):active {
+.tabList button:nth-child(2).activeBtn,
+.tabList button:nth-child(2):hover,
+.tabList button:nth-child(2):active {
   box-shadow: inset 0px 1px 1px 1px #666;
   background: #f1f1f1;
 }
 
-.tabList button:nth-child(3).activeBtn, .tabList button:nth-child(3):hover, .tabList button:nth-child(3):active {
+.tabList button:nth-child(3).activeBtn,
+.tabList button:nth-child(3):hover,
+.tabList button:nth-child(3):active {
   box-shadow: inset -1px 1px 1px 1px #666;
   background: #f1f1f1;
 }
@@ -309,7 +322,7 @@ ul.questions-list li {
   font-size: 12px;
 }
 
-.btn[type='submit']:disabled {
+.btn[type="submit"]:disabled {
   color: #ccc;
   cursor: not-allowed;
 }
@@ -401,16 +414,16 @@ ul.questions-list li {
   width: 20px;
   border: 0;
   border-radius: 50px;
-  cursor: pointer;     
+  cursor: pointer;
   margin-right: 7px;
   outline: none;
 }
 .form-radio:checked::before {
   position: absolute;
-  font: 13px/1 'Open Sans', sans-serif;
+  font: 13px/1 "Open Sans", sans-serif;
   left: 6px;
   top: 2px;
-  content: '\02143';
+  content: "\02143";
   transform: rotate(40deg);
 }
 
@@ -423,4 +436,4 @@ ul.questions-list li {
 }
 label {
   cursor: pointer;
-} 
+}
