@@ -1,100 +1,63 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This app is the final assessment project for Udacity's React & Redux course and is based on the starter code which can be found in [this repo](https://github.com/udacity/reactnd-project-would-you-rather-starter).
 
-The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+## Acknowledgements
 
-Using the provided starter code, you'll build a React/Redux front end for the application. We recommend using the [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+The only substantial part of code borrowed from the starter repo is `_DATA.js` which was modified slightly to switch the avatar images only. `_DATA.js` mimics the server-side API communications that a React-Redux would typically make with other web-based services in a single, local file.
 
-## Data
+In addition, [Create React App](https://github.com/facebook/create-react-app) boilerplate was used to bootstrap other build tools and dependencies for React development.
 
-There are two types of objects stored in our database:
+## Starting the App
 
-* Users
-* Questions
+You will need to have Node 8.10.0 or higher as specified in the version of `create-react-app` [requirements](https://github.com/facebook/create-react-app/blob/master/README.md#creating-an-app). The app can be started with the following commands:
 
-### Users
+```
+npm install
+npm start
+```
 
-Users include:
+The app can be opened via http://localhost:3000/.
 
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
+## Functionality
 
-### Questions
+There are four main views:
 
-Questions include:
+- Home
+- New Question
+- Leaderboard
+- Login / Profile
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
+### Sign-in
 
-### Voting Options
+All views require a "sign-in like" action which simply persists the selected user's id in the Redux Store as "authenticated".
 
-Voting options are attached to questions. They include:
+_To Do: create a real authentication/sign-in as well as sign-up flow._
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
+### Views
 
-Your code will talk to the database via 4 methods:
+`Home` view shows the list of questions sorted by created timestamp in descending order.
 
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
+Click `New Question` to add a new "Would You Rather" question as the signed-in user ("`authedUser`").
 
-1) `_getUsers()` Method
+The list of all users and their scorecards can be found in `Leaderboard` page, which can be sorted by different criteria (# of questions, # of answers, or the sum of the two) in descending order. The ranking doesn't have any tiebreaking mechanism (_To do?_).
 
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
+Lastly, the `Profile` page (appears as `Login` when the `authedUser` is not chosen) shows the `authedUser`'s scorecard as well as a list of their authored questions and answered questions, sorted by timestamp in descending order.
 
-2) `_getQuestions()` Method
+### Voting
 
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
+Each of the questions has a "View" button which allows three things:
 
-3) `_saveQuestion(question)` Method
+- Allows `authedUser` to vote, if the question is unanswered; or
+- View the current result of the poll, if the `authedUser` has voted; or
+- Edit the existing answer
 
-*Description*: Save the polling question in the database.  
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
+## To Do's
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
+1. Create a real authentication method
+1. Introduce tiebreaking rules
+1. More fluid navigation ('Back' buttons, breadcrumbs, etc.)
 
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+## Contributing and Licensing
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
-
-4) `_saveQuestionAnswer(object)` Method
-
-*Description*: Save the answer to a particular polling question in the database.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
-
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
-
-## Contributing
-
-This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
+Any comment or pull request will be greatly appreciated. Licensed under the MIT License and extends (the copyright and the license notices of Facebook)[https://github.com/facebook/create-react-app/blob/master/LICENSE].
