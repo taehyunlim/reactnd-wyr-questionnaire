@@ -4,7 +4,7 @@ This app is the final assessment project for Udacity's React & Redux course and 
 
 ## Acknowledgements
 
-The only substantial part of code borrowed from the starter repo is `_DATA.js` which was modified slightly to switch the avatar images only. `_DATA.js` mimics the server-side API communications that a React-Redux would typically make with other web-based services in a single, local file.
+The only substantial part of code borrowed from the starter repo is `_DATA.js` which was modified slightly to switch one of the the avatar images only (Sorry, John Doe). `_DATA.js` mimics the server-side API communications that a React-Redux would typically make with other web-based services.
 
 In addition, [Create React App](https://github.com/facebook/create-react-app) boilerplate was used to bootstrap other build tools and dependencies for React development.
 
@@ -21,20 +21,19 @@ The app can be opened via http://localhost:3000/.
 
 ## Functionality
 
+### Sign-in
+
+All views require a "sign-in like" action which simply persists the selected user's id in the Redux Store as "authenticated".
+(_To Do: create a real authentication/sign-in as well as sign-up flow._)
+
+### Views
+
 There are four main views:
 
 - Home
 - New Question
 - Leaderboard
 - Login / Profile
-
-### Sign-in
-
-All views require a "sign-in like" action which simply persists the selected user's id in the Redux Store as "authenticated".
-
-_To Do: create a real authentication/sign-in as well as sign-up flow._
-
-### Views
 
 `Home` view shows the list of questions sorted by created timestamp in descending order.
 
@@ -60,4 +59,4 @@ Each of the questions has a "View" button which allows three things:
 
 ## Contributing and Licensing
 
-Any comment or pull request will be greatly appreciated. Licensed under the MIT License and extends (the copyright and the license notices of Facebook)[https://github.com/facebook/create-react-app/blob/master/LICENSE].
+Any comment or pull request will be greatly appreciated. Licensed under the MIT License and extends [the copyright and the license notices of Facebook](https://github.com/facebook/create-react-app/blob/master/LICENSE).
