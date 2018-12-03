@@ -19,7 +19,7 @@ export const Nav = props => {
           </li>
           <li>
             <NavLink to="/leaderboard" activeClassName="active">
-              Leader Board
+              Leaderboard
             </NavLink>
           </li>
           <li>
