@@ -48,9 +48,9 @@ class App extends Component {
                   )}
                 />
                 <Route path="/question/:id" component={QuestionPage} />
-                <Route path="/new" component={NewQuestion} />
+                <Route path="/add" component={NewQuestion} />
                 <Route
-                  path="/leader-board"
+                  path="/leaderboard"
                   exact
                   render={() => (
                     <LeaderBoard
