@@ -47,7 +47,10 @@ class Question extends Component {
 
   render() {
     // console.info(this.props)
-    const { question } = this.props;
+    const { question, votesCountOptionOne, votesCountOptionTwo } = this.props;
+    // Total votes count
+    const votesCountTotal = votesCountOptionOne + votesCountOptionTwo;
+
     if (!question) {
       return <p>[404] Question does not exist.</p>;
     }
@@ -230,10 +233,22 @@ class Question extends Component {
             </div>
             <div className="option-text option-text-one">
               {`① ` + textOptionOne[0].toUpperCase() + textOptionOne.slice(1)}
+              {votesCountTotal > 0 && (
+                <span>{` [${(
+                  (votesCountOptionOne / votesCountTotal) *
+                  100
+                ).toFixed(0)}%]`}</span>
+              )}
               {this.props.prevAnswer === "optionOne" && checkPrevAnser}
             </div>
             <div className="option-text option-text-two">
               {`② ` + textOptionTwo[0].toUpperCase() + textOptionTwo.slice(1)}
+              {votesCountTotal > 0 && (
+                <span>{` [${(
+                  (votesCountOptionTwo / votesCountTotal) *
+                  100
+                ).toFixed(0)}%]`}</span>
+              )}
               {this.props.prevAnswer === "optionTwo" && checkPrevAnser}
             </div>
             <HorizontalBar data={chartData} options={chartOptions} />
@@ -262,20 +277,25 @@ function mapStateToProps({ questions, users, authedUser }, props) {
   const { id } = props;
   const question = questions[id];
   // Return previous answer, if exists
-  let prevAnswer = !question
+  const prevAnswer = !question
     ? null
     : question.optionOne.votes.includes(authedUser)
     ? "optionOne"
     : question.optionTwo.votes.includes(authedUser)
     ? "optionTwo"
     : null;
+  // Vote counts
+  const votesCountOptionOne = question.optionOne.votes.length;
+  const votesCountOptionTwo = question.optionTwo.votes.length;
 
   return {
     authedUser,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
       : null,
-    prevAnswer
+    prevAnswer,
+    votesCountOptionOne,
+    votesCountOptionTwo
   };
 }
 
