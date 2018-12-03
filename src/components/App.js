@@ -15,7 +15,7 @@ import ProfilePage from "./ProfilePage";
 class App extends Component {
   // App level state for UI
   state = {
-    activeTab: 0,
+    activeTab: 1,
     activeTabSort: 0
   };
   componentDidMount() {
