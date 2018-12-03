@@ -41,6 +41,16 @@ class ProfilePage extends Component {
     if (!authedUser) return null;
     return (
       <div className="page-container">
+        {authedUser === user && (
+          <div className="tabList">
+            <button
+              className="tabBtn logout"
+              onClick={() => console.log("TEST")}
+            >
+              Log Out
+            </button>
+          </div>
+        )}
         <div className="questions-list">
           <ScoreCard user={users[user]} />
         </div>

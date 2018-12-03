@@ -280,6 +280,10 @@ ul.questions-list li {
   border: 2px solid #666;
 }
 
+.tabBtn.logout {
+  margin-bottom: -2px;
+}
+
 .tabList button:nth-child(2) {
   margin: 0 -2px;
 }
