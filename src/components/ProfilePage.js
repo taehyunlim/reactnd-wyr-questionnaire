@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Question from "./Question";
 import { ScoreCard } from "./ScoreCard";
+import { handleSetAuthedUser } from "../actions";
 
 class ProfilePage extends Component {
+  handleLogout = e => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(handleSetAuthedUser(null));
+  };
+
   render() {
     const {
       authedUser,
@@ -43,10 +50,7 @@ class ProfilePage extends Component {
       <div className="page-container">
         {authedUser === user && (
           <div className="tabList">
-            <button
-              className="tabBtn logout"
-              onClick={() => console.log("TEST")}
-            >
+            <button className="tabBtn logout" onClick={this.handleLogout}>
               Log Out
             </button>
           </div>

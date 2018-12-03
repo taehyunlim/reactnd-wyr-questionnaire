@@ -282,6 +282,7 @@ ul.questions-list li {
 
 .tabBtn.logout {
   margin-bottom: -2px;
+  cursor: pointer;
 }
 
 .tabList button:nth-child(2) {
