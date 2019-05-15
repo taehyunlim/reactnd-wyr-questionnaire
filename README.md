@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-This app is the final assessment project for Udacity's React & Redux course and is based on the starter code which can be found in [this repo](https://github.com/udacity/reactnd-project-would-you-rather-starter).
+This app is the final assessment project for Udacity's React & Redux course and is based on the starter code which can be found in [this repo](https://github.com/udacity/reactnd-project-would-you-rather-starter). Submitted code is deployed on Heroku as a [live demo](https://reactnd-wyr.herokuapp.com/).
 
 ## Acknowledgements
 
